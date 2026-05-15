@@ -62,7 +62,7 @@ export default function RechargeHub() {
   const [selectedGame, setSelectedGame] = useState<keyof typeof DB | null>(null);
 
   const containerV = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } } };
-  const cardV = { hidden: { opacity: 0, y: 20, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 120, damping: 20 } } };
+  const cardV = { hidden: { opacity: 0, y: 20, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 120, damping: 20 } } };
 
   return (
     <main style={{ padding: '5rem 5% 4rem', maxWidth: '1200px', margin: '0 auto', minHeight: 'calc(100vh - 100px)' }}>
