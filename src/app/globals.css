@@ -389,23 +389,24 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 768px) {
   .fab-stack {
-    bottom: 25px;
-    right: 20px;
+    bottom: 12px;
+    right: 12px;
     gap: 12px;
   }
   .wa-fab {
-    gap: 8px !important; /* Closer text on mobile */
+    gap: 6px !important;
   }
   .wa-fab .fab-icon-container {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
   }
-  .fab-logo { width: 38px; }
+  .fab-logo { width: 32px; }
   .fab-tooltip {
     right: auto !important;
-    font-size: 0.8rem;
-    padding: 6px 12px;
-    border-radius: 10px;
+    font-size: 0.6rem;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 800;
   }
 }
