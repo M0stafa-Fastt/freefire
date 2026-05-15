@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import TiltCard from "@/components/TiltCard";
 
 const DB = {
-  ff: { title: "فري فاير", themeRaw: "#FF7B00", icon: "🔥" },
-  pubg: { title: "ببجي موبايل", themeRaw: "#00C8FF", icon: "🪖" },
-  tiktok: { title: "تيك توك", themeRaw: "#FF0066", icon: "🎵" },
-  vr: { title: "فايكنج رايز", themeRaw: "#A200FF", icon: "⚔️" }
+  ff: { title: "فري فاير", themeRaw: "#00D1FF", icon: "/image/ff.jpg" },
+  pubg: { title: "ببجي موبايل", themeRaw: "#00C8FF", icon: "/image/pubg.jpg" },
+  tiktok: { title: "تيك توك", themeRaw: "#FF0066", icon: "/image/vr.jpg" },
+  vr: { title: "فايكنج رايز", themeRaw: "#A200FF", icon: "/image/tiktok.jpg" }
 };
 
 const ITEMS = {
@@ -28,7 +28,11 @@ const ITEMS = {
     { cat: "شحن عن طريق ID 🆔", amt: "520 جوهرة", price: "265" },
     { cat: "شحن عن طريق ID 🆔", amt: "1060 جوهرة", price: "525" },
     { cat: "شحن عن طريق ID 🆔", amt: "عضوية أسبوعية ID", price: "135" },
-    { cat: "شحن عن طريق ID 🆔", amt: "عضوية الشهرية ID", price: "570" }
+    { cat: "شحن عن طريق ID 🆔", amt: "عضوية الشهرية ID", price: "570" },
+    { cat: "بويا باس 🎟️", amt: "بويا باس", price: "60", desc: "متوفر بويا باس بسعر 60 جنيه" },
+    { cat: "إنزال جوي 🚁", amt: "دروب 1$", price: "50", desc: "دروب (إنزال جوي) بقيمة 1$" },
+    { cat: "إنزال جوي 🚁", amt: "دروب 2$", price: "100", desc: "دروب (إنزال جوي) بقيمة 2$" },
+    { cat: "إنزال جوي 🚁", amt: "دروب 16ج", price: "35", desc: "دروب (إنزال جوي) بقيمة 16جنية" }
   ],
   pubg: [
     { cat: "شحن عن طريق ID 🪖", amt: "60 شدة", price: "60" },
@@ -45,24 +49,32 @@ const ITEMS = {
     { cat: "شحن كوينز تيك توك 🎵", amt: "4000 كوين", price: "2350" }
   ],
   vr: [
-    { cat: "التوثيق 🔓", amt: "500 كريستالة", price: "250" },
-    { cat: "التوثيق 🔓", amt: "1000 كريستالة", price: "490" },
-    { cat: "التوثيق 🔓", amt: "2000 كريستالة", price: "980" },
-    { cat: "التوثيق 🔓", amt: "5000 كريستالة", price: "2450" },
-    { cat: "التوثيق 🔓", amt: "10000 كريستالة", price: "4850" },
-    { cat: "التوثيق عبر الـ ID 🆔", amt: "500 كريستالة", price: "290" },
-    { cat: "التوثيق عبر الـ ID 🆔", amt: "1000 كريستالة", price: "580" },
-    { cat: "التوثيق عبر الـ ID 🆔", amt: "2000 كريستالة", price: "1150" },
-    { cat: "التوثيق عبر الـ ID 🆔", amt: "عضوية أسبوعية", price: "125" },
-    { cat: "التوثيق عبر الـ ID 🆔", amt: "عضوية شهرية", price: "1150" }
+    { cat: "شحن عن طريق الحساب", amt: "500 كريستالة", price: "250" },
+    { cat: "شحن عن طريق الحساب", amt: "1000 كريستالة", price: "490" },
+    { cat: "شحن عن طريق الحساب", amt: "2000 كريستالة", price: "980" },
+    { cat: "شحن عن طريق الحساب", amt: "5000 كريستالة", price: "2450" },
+    { cat: "شحن عن طريق الحساب", amt: "10000 كريستالة", price: "4850" },
+    { cat: "شحن عن طريق ID", amt: "500 كريستالة", price: "290" },
+    { cat: "شحن عن طريق ID", amt: "1000 كريستالة", price: "580" },
+    { cat: "شحن عن طريق ID", amt: "2000 كريستالة", price: "1150" },
+    { cat: "شحن عن طريق ID", amt: "عضوية أسبوعية", price: "125" },
+    { cat: "شحن عن طريق ID", amt: "عضوية شهرية", price: "1150" }
   ]
 };
 
 export default function RechargeHub() {
   const [selectedGame, setSelectedGame] = useState<keyof typeof DB | null>(null);
+  const [selectedType, setSelectedType] = useState<"Account" | "ID" | "Booyah" | "Airdrop">("ID");
 
   const containerV = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } } };
   const cardV = { hidden: { opacity: 0, y: 20, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 120, damping: 20 } } };
+
+  const getWaLink = (pack: any, cat: string) => {
+    const gameTitle = selectedGame ? DB[selectedGame].title : "";
+    const cleanCat = cat.replace(/[📲🆔🔥🪖🎵⚔️🔓🎟️🚁👉]/g, '').trim();
+    const message = `السلام عليكم، أريد شحن ${pack.amt} بسعر ${pack.price} جنيه ${cleanCat}`;
+    return `https://wa.me/201212169109?text=${encodeURIComponent(message)}`;
+  };
 
   return (
     <main style={{ padding: '5rem 5% 4rem', maxWidth: '1200px', margin: '0 auto', minHeight: 'calc(100vh - 100px)' }}>
@@ -78,13 +90,10 @@ export default function RechargeHub() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem', placeItems: 'center' }}>
               {(Object.keys(DB) as Array<keyof typeof DB>).map((key) => (
-                <div key={key} style={{ height: '280px', width: '100%', maxWidth: '300px' }}>
+                <div key={key} style={{ height: '320px', width: '100%', maxWidth: '300px' }}>
                   <TiltCard themeColor={DB[key].themeRaw} onClick={() => setSelectedGame(key)}>
-                    <div style={{
-                      transform: 'translateZ(40px)', fontSize: '3.5rem', marginBottom: '1rem',
-                      filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.5))'
-                    }}>
-                      {DB[key].icon}
+                    <div className="game-card-img-container">
+                      <img src={DB[key].icon} alt={DB[key].title} className="game-card-img" />
                     </div>
                     <h3 style={{ transform: 'translateZ(20px)', fontSize: '1.6rem', fontWeight: 900, color: 'var(--text-white)' }}>{DB[key].title}</h3>
                   </TiltCard>
@@ -100,18 +109,62 @@ export default function RechargeHub() {
 
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }} className="hub-header-flex">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', order: 2 }}>
-                <span style={{ fontSize: '2rem' }}>{DB[selectedGame].icon}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', order: 2 }}>
+                <div className="game-card-img-container" style={{ width: '60px', height: '60px', borderRadius: '12px', marginBottom: 0 }}>
+                  <img src={DB[selectedGame].icon} alt="" className="game-card-img" />
+                </div>
                 <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 900, lineHeight: 1 }}>{DB[selectedGame].title}</h2>
-                <div style={{ width: '10px', height: '36px', borderRadius: '5px', background: DB[selectedGame].themeRaw, boxShadow: `0 0 16px ${DB[selectedGame].themeRaw}40` }} />
+                <div style={{ width: '8px', height: '36px', borderRadius: '5px', background: DB[selectedGame].themeRaw, boxShadow: `0 0 16px ${DB[selectedGame].themeRaw}40` }} />
               </div>
-              <button onClick={() => setSelectedGame(null)} className="back-btn" style={{ order: 1 }}>
+              <button onClick={() => { setSelectedGame(null); setSelectedType("ID"); }} className="back-btn" style={{ order: 1 }}>
                 <span style={{ fontSize: '1.1rem' }}>→</span> رجوع للألعاب
               </button>
             </div>
 
             {/* FROSTED CONTAINER */}
             <div className="frosted-container">
+              {/* Type Switcher for FF and VR */}
+              {(selectedGame === 'ff' || selectedGame === 'vr') && (
+                <div className="recharge-type-tabs">
+                  <button 
+                    onClick={() => setSelectedType("Account")} 
+                    className={`btn-type ${selectedType === "Account" ? "active" : ""}`}
+                    style={{ "--active-color": DB[selectedGame].themeRaw, "--active-glow": `${DB[selectedGame].themeRaw}40` } as any}
+                  >
+                    <span className="icon-glow" style={{ fontSize: '1.4rem' }}>💎</span>
+                    شحن بالحساب
+                  </button>
+                  <button 
+                    onClick={() => setSelectedType("ID")} 
+                    className={`btn-type ${selectedType === "ID" ? "active" : ""}`}
+                    style={{ "--active-color": DB[selectedGame].themeRaw, "--active-glow": `${DB[selectedGame].themeRaw}40` } as any}
+                  >
+                    <span className="icon-glow" style={{ fontSize: '1.4rem' }}>🆔</span>
+                    شحن بالايدي
+                  </button>
+                  {selectedGame === 'ff' && (
+                    <>
+                      <button 
+                        onClick={() => setSelectedType("Booyah")} 
+                        className={`btn-type ${selectedType === "Booyah" ? "active" : ""}`}
+                        style={{ "--active-color": "#FFC107", "--active-glow": "rgba(255,193,7,0.25)" } as any}
+                      >
+                        <span className="icon-glow" style={{ fontSize: '1.4rem' }}>🎟️</span>
+                        بويا باس
+                      </button>
+                      <button 
+                        onClick={() => setSelectedType("Airdrop")} 
+                        className={`btn-type ${selectedType === "Airdrop" ? "active" : ""}`}
+                        style={{ "--active-color": "#FF5722", "--active-glow": "rgba(255,87,34,0.25)" } as any}
+                      >
+                        <span className="icon-glow" style={{ fontSize: '1.4rem' }}>🚁</span>
+                        انزالات جوية
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
+
               {/* Ambient Glow */}
               <div style={{
                 position: 'absolute', width: '550px', height: '550px',
@@ -122,26 +175,42 @@ export default function RechargeHub() {
 
               <motion.div variants={containerV} initial="hidden" animate="visible" style={{ position: 'relative', zIndex: 1 }}>
                 {Object.entries(
-                  ITEMS[selectedGame].reduce((acc, cur) => {
+                  ITEMS[selectedGame].filter(item => {
+                    if (selectedGame === 'ff') {
+                      if (selectedType === 'Account') return item.cat.includes("الحساب");
+                      if (selectedType === 'ID') return item.cat.includes("ID") && !item.cat.includes("بويا") && !item.cat.includes("إنزال");
+                      if (selectedType === 'Booyah') return item.cat.includes("بويا");
+                      if (selectedType === 'Airdrop') return item.cat.includes("إنزال");
+                    }
+                    if (selectedGame === 'vr') {
+                      if (selectedType === 'Account') return item.cat.includes("الحساب");
+                      if (selectedType === 'ID') return item.cat.includes("ID");
+                    }
+                    return true;
+                  }).reduce((acc, cur) => {
                     if (!acc[cur.cat]) acc[cur.cat] = [];
                     acc[cur.cat].push(cur);
                     return acc;
                   }, {} as Record<string, typeof ITEMS[keyof typeof ITEMS]>)
                 ).map(([catName, packs]) => (
                   <div key={catName} style={{ marginBottom: '3rem' }}>
-                    <h3 style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: '1.2rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <span style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.06)' }} />
-                      <span style={{ padding: '0.35rem 1rem', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '100px', background: 'rgba(255,255,255,0.02)', fontSize: '0.95rem', whiteSpace: 'nowrap' }}>{catName}</span>
-                    </h3>
+                    <div className="section-title-premium">
+                      <div className="text">
+                        {catName.includes("بويا") ? "🎟️" : catName.includes("إنزال") ? "🚁" : catName.includes("ID") ? "🆔" : "📲"}
+                        {catName}
+                      </div>
+                      <div className="line" />
+                    </div>
                     <div className="pricing-grid">
-                      {packs.map((pack, i) => (
+                      {packs.map((pack: any, i) => (
                         <motion.div key={i} variants={cardV} className="pricing-card">
                           <div className="pack-amount">{pack.amt}</div>
+                          {pack.desc && <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '0.5rem' }}>{pack.desc}</div>}
                           <div className="pack-price" style={{ color: DB[selectedGame].themeRaw, textShadow: `0 0 16px ${DB[selectedGame].themeRaw}30` }}>
                             {pack.price}
                             <span className="currency">جنية</span>
                           </div>
-                          <a href="https://wa.me/message/22H3KNIOLKVIC1" target="_blank" rel="noreferrer" className="pack-buy"
+                          <a href={getWaLink(pack, catName)} target="_blank" rel="noreferrer" className="pack-buy"
                             style={{ background: DB[selectedGame].themeRaw, boxShadow: `0 4px 12px ${DB[selectedGame].themeRaw}25` }}>
                             طلب الشحن
                           </a>

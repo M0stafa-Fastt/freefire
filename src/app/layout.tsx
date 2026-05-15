@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body>
-        <div className="cyber-ambient">
+        <div className="cyber-ambient" style={{ zIndex: -1 }}>
           <div className="glow-sphere top-right"></div>
           <div className="glow-sphere bottom-left"></div>
         </div>
@@ -28,10 +28,13 @@ export default function RootLayout({
           borderBottom: '1px solid rgba(255,255,255,0.05)'
         }}>
           <Link href="/" style={{
-            fontFamily: 'var(--font-en)', fontSize: '1.8rem', fontWeight: 900,
-            letterSpacing: '2px', display: 'flex', alignItems: 'baseline', gap: '4px'
-          }}>
-            SMART<span style={{ width: '8px', height: '8px', background: 'var(--accent-electric)', borderRadius: '50%', display: 'inline-block', boxShadow: '0 0 10px var(--accent-electric)' }}></span>
+            display: 'flex', alignItems: 'center', transition: '0.3s ease'
+          }} className="logo-container">
+            <img 
+              src="/logo/main-logo.png" 
+              alt="SMART logo" 
+              style={{ height: '50px', width: 'auto', filter: 'drop-shadow(0 0 12px rgba(0,200,255,0.3))' }} 
+            />
           </Link>
           <Link href="/" className="nav-btn">
             الرئيسية
@@ -39,6 +42,35 @@ export default function RootLayout({
         </nav>
 
         {children}
+
+        {/* Floating Action Buttons */}
+        <div className="fab-stack">
+          {/* WhatsApp Channel FAB */}
+          <a 
+            href="https://whatsapp.com/channel/0029VbAszMJHQbS8UXuJO43r" 
+            target="_blank" 
+            rel="noreferrer"
+            className="wa-fab channel-fab"
+          >
+            <div className="fab-icon-container">
+              <img src="/logo/main-logo.png" alt="SMART" className="fab-logo" />
+            </div>
+            <div className="fab-tooltip">القناه</div>
+          </a>
+
+          {/* Technical Support FAB */}
+          <a 
+            href="https://wa.me/message/22H3KNIOLKVIC1" 
+            target="_blank" 
+            rel="noreferrer"
+            className="wa-fab support-fab"
+          >
+            <div className="fab-icon-container">
+              <span style={{ fontSize: '1.4rem' }}>🛠️</span>
+            </div>
+            <div className="fab-tooltip">للدعم الفني</div>
+          </a>
+        </div>
       </body>
     </html>
   );
