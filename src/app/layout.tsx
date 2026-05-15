@@ -60,7 +60,7 @@ export default function RootLayout({
 
           {/* Technical Support FAB */}
           <a 
-            href="https://wa.me/message/22H3KNIOLKVIC1" 
+            href="https://wa.me/201096247339?text=السلام عليكم، اريد التواصل مع الدعم الفني" 
             target="_blank" 
             rel="noreferrer"
             className="wa-fab support-fab"

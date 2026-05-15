@@ -390,18 +390,22 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 768px) {
   .fab-stack {
     bottom: 25px;
-    right: 25px;
-    gap: 15px;
+    right: 20px;
+    gap: 12px;
+  }
+  .wa-fab {
+    gap: 8px !important; /* Closer text on mobile */
   }
   .wa-fab .fab-icon-container {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
   }
-  .fab-logo { width: 40px; }
+  .fab-logo { width: 38px; }
   .fab-tooltip {
-    right: 80px;
-    font-size: 0.85rem;
-    padding: 8px 16px;
+    right: auto !important;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 10px;
   }
 }

@@ -70,10 +70,9 @@ export default function RechargeHub() {
   const cardV = { hidden: { opacity: 0, y: 20, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 120, damping: 20 } } };
 
   const getWaLink = (pack: any, cat: string) => {
-    const gameTitle = selectedGame ? DB[selectedGame].title : "";
     const cleanCat = cat.replace(/[📲🆔🔥🪖🎵⚔️🔓🎟️🚁👉]/g, '').trim();
     const message = `السلام عليكم، أريد شحن ${pack.amt} بسعر ${pack.price} جنيه ${cleanCat}`;
-    return `https://wa.me/201212169109?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/201096247339?text=${encodeURIComponent(message)}`;
   };
 
   return (
