@@ -1,0 +1,267 @@
+:root {
+    /* Deep Gaming Luxury Palette */
+    --base-dark: #07090C;
+    --card-surface: #12161C;
+    --card-border: #212833;
+    
+    --text-white: #FFFFFF;
+    --text-muted: #8E9BAE;
+    
+    --accent-electric: #00D1FF;
+    
+    /* Subtle theme glows */
+    --glow-ff: rgba(255, 123, 0, 0.15);
+    --glow-pubg: rgba(0, 209, 255, 0.15);
+    --glow-tiktok: rgba(255, 0, 102, 0.15);
+    --glow-vr: rgba(162, 0, 255, 0.15);
+    
+    --theme-border-ff: #FF7B00;
+    --theme-border-pubg: #00D1FF;
+    --theme-border-tiktok: #FF0066;
+    --theme-border-vr: #A200FF;
+
+    --font-ar: 'Cairo', sans-serif;
+    --font-en: 'Outfit', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--base-dark);
+    color: var(--text-white);
+    font-family: var(--font-ar);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent-electric); color: #000; }
+a { text-decoration: none; color: inherit; }
+
+/* ----------------------------------
+   AMBIENT BACKGROUND
+---------------------------------- */
+.cyber-ambient {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -10; overflow: hidden;
+}
+
+.glow-sphere {
+    position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.4;
+    background: radial-gradient(circle, var(--accent-electric) 0%, transparent 60%);
+    pointer-events: none;
+}
+.top-right { width: 600px; height: 600px; top: -200px; right: -100px; }
+.bottom-left { width: 800px; height: 800px; bottom: -300px; left: -200px; background: radial-gradient(circle, #0B1C3A 0%, transparent 60%); opacity: 0.8;}
+
+.floating-particles {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px; opacity: 0.5;
+}
+
+/* ----------------------------------
+   NAVIGATION
+---------------------------------- */
+.premium-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 6%; position: sticky; top: 0; z-index: 100;
+    background: rgba(7, 9, 12, 0.8); backdrop-filter: blur(20px);
+}
+.border-nav { border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+.logo { font-family: var(--font-en); font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; display: flex; align-items: baseline; gap: 4px; }
+.logo-dot { width: 8px; height: 8px; background: var(--accent-electric); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--accent-electric); }
+
+.btn-nav-outline {
+    border: 1px solid var(--card-border); color: var(--text-white); padding: 0.5rem 1.2rem;
+    border-radius: 6px; font-weight: 800; font-size: 0.95rem; transition: 0.3s;
+    background: rgba(255,255,255,0.02); display: flex; align-items: center; gap: 0.5rem;
+}
+.btn-nav-outline:hover { background: var(--text-white); color: var(--base-dark); border-color: var(--text-white); }
+
+
+/* ----------------------------------
+   HOME HERO (Punchy & Light 3D)
+---------------------------------- */
+.hero-focused {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: calc(100vh - 100px); padding: 0 8%;
+}
+
+.hero-content { flex: 1; z-index: 10; max-width: 600px;}
+
+.hero-title {
+    font-size: clamp(3rem, 7vw, 5rem); font-weight: 900; line-height: 1.2;
+    margin-bottom: 1rem; text-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem; color: var(--text-muted); font-weight: 600;
+    line-height: 1.6; margin-bottom: 3rem;
+}
+
+/* 3D Hardware CTA Button */
+.btn-action-3d {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: linear-gradient(180deg, var(--accent-electric) 0%, #0099DD 100%);
+    color: #000; font-weight: 900; font-size: 1.3rem;
+    padding: 1rem 3rem; border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 209, 255, 0.3), inset 0 2px 0 rgba(255,255,255,0.4);
+    transform-style: preserve-3d; transition: 0.3s;
+}
+.btn-action-3d:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 209, 255, 0.4), inset 0 2px 0 rgba(255,255,255,0.5);
+}
+.btn-icon { font-size: 1.5rem; }
+
+/* Elegant Soft 3D Parallax Graphic */
+.hero-3d-scene {
+    flex: 1; height: 500px; display: flex; align-items: center; justify-content: center;
+    perspective: 1000px; position: relative; pointer-events: none;
+}
+
+.float-card {
+    width: 250px; height: 350px; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: gentleFloat 6s ease-in-out infinite alternate;
+    transform: rotateY(-15deg) rotateX(10deg);
+}
+
+.glare-surface {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%);
+    border-radius: 16px;
+}
+.brand-insignia { font-family: var(--font-en); font-size: 5rem; font-weight: 900; color: rgba(255,255,255,0.1); }
+
+.float-gem {
+    position: absolute; width: 60px; height: 60px; border-radius: 12px;
+    background: rgba(0, 209, 255, 0.1); border: 1px solid var(--accent-electric); backdrop-filter: blur(5px);
+}
+.gem-1 { top: 15%; right: 10%; transform: rotatez(45deg); animation: gentleFloat 5s ease-in-out infinite alternate-reverse; }
+.gem-2 { bottom: 15%; left: 10%; transform: rotatez(15deg); animation: gentleFloat 7s ease-in-out infinite alternate; box-shadow: 0 0 20px var(--accent-electric);}
+
+@keyframes gentleFloat { 0% { margin-top: 0; } 100% { margin-top: -30px; } }
+
+
+/* ----------------------------------
+   THE HUB (recharge.html)
+---------------------------------- */
+.system-hub { padding: 4rem 6%; max-width: 1400px; margin: 0 auto; }
+
+.hub-header { text-align: center; margin-bottom: 5rem; }
+.hub-header h2 { font-size: 3rem; font-weight: 900; margin-bottom: 0.5rem; }
+.hub-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+
+/* --- Light 3D Gaming Cards --- */
+.cards-3d-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.5rem; }
+
+.gaming-card {
+    position: relative; height: 320px; perspective: 1000px; cursor: pointer;
+}
+
+/* Subtle background glow effect attached to card */
+.card-glow-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 16px; filter: blur(25px); opacity: 0; transition: 0.4s;
+    transform: translateZ(-20px);
+}
+
+.card-glass-body {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--card-surface);
+    border: 1px solid var(--card-border); border-radius: 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: 0.4s; transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-icon {
+    font-family: var(--font-en); font-size: 3rem; font-weight: 900; color: var(--text-white);
+    margin-bottom: 1.5rem; transform: translateZ(30px); transition: 0.4s;
+}
+.card-title { font-size: 1.8rem; font-weight: 900; transform: translateZ(20px); transition: 0.4s; text-shadow: 0 5px 15px rgba(0,0,0,0.5);}
+
+/* The Hover Physics */
+.gaming-card:hover .card-glass-body { 
+    transform: translateY(-10px) rotateX(5deg);
+    border-color: rgba(255,255,255,0.2); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+.gaming-card:hover .card-icon { transform: translateZ(50px) scale(1.1); }
+
+/* Theme Colors Application */
+.theme-ff .card-glow-bg { background: var(--theme-border-ff); }
+.theme-ff:hover .card-glass-body { border-color: var(--theme-border-ff); }
+.theme-pubg .card-glow-bg { background: var(--theme-border-pubg); }
+.theme-pubg:hover .card-glass-body { border-color: var(--theme-border-pubg); }
+.theme-tiktok .card-glow-bg { background: var(--theme-border-tiktok); }
+.theme-tiktok:hover .card-glass-body { border-color: var(--theme-border-tiktok); }
+.theme-vr .card-glow-bg { background: var(--theme-border-vr); }
+.theme-vr:hover .card-glass-body { border-color: var(--theme-border-vr); }
+
+.gaming-card:hover .card-glow-bg { opacity: 0.15; }
+
+
+/* ----------------------------------
+   ROUTING
+---------------------------------- */
+.view-panel { transition: 0.4s; }
+.view-panel.active { opacity: 1; visibility: visible; transform: translateY(0); display: block;}
+.view-panel.hidden { opacity: 0; visibility: hidden; transform: translateY(20px); display: none;}
+
+/* ----------------------------------
+   PRICING LAYOUT (Highly Scannable)
+---------------------------------- */
+.pricing-header-ui { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4rem; }
+.sys-title-tag { display: flex; align-items: center; gap: 1rem; }
+.title-icon { width: 16px; height: 16px; border-radius: 4px; background: var(--accent-electric); }
+.sys-title-tag h2 { font-size: 2.2rem; font-weight: 900; }
+
+.pricing-section { margin-bottom: 4rem; }
+.section-title { font-size: 1.5rem; color: var(--text-white); margin-bottom: 2rem; border-right: 4px solid var(--accent-electric); padding-right: 1rem;}
+
+.scan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1rem; }
+
+/* The Sleek Layout */
+.price-row {
+    background: var(--card-surface); border: 1px solid var(--card-border);
+    border-radius: 8px; padding: 1rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: 0.3s;
+}
+.price-row:hover { border-color: rgba(255,255,255,0.1); background: #181d24; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+
+/* Readability styling: Item clearly on right, Price clearly on left */
+.item-side { font-size: 1.1rem; font-weight: 800; color: var(--text-white); }
+.price-side { display: flex; align-items: center; gap: 1.5rem; }
+
+.cost-tag { 
+    font-family: var(--font-en); font-size: 1.3rem; font-weight: 900; color: var(--accent-electric); 
+    display: flex; align-items: center; gap: 0.4rem;
+}
+.cost-tag span { font-family: var(--font-ar); font-size: 0.8rem; color: var(--text-muted); font-weight: 800;}
+
+.btn-buy-mini {
+    background: rgba(255,255,255,0.05); color: var(--text-white); border: 1px solid var(--card-border);
+    padding: 0.5rem 1.2rem; border-radius: 6px; font-family: inherit; font-weight: 800;
+    cursor: pointer; transition: 0.3s;
+}
+.price-row:hover .btn-buy-mini { background: var(--text-white); color: #000; border-color: var(--text-white); }
+
+/* Animation */
+.enter-anim { animation: smoothUp 0.6s ease forwards; }
+@keyframes smoothUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+    .hero-focused { flex-direction: column; text-align: center; justify-content: center; padding-top: 2rem;}
+    .hero-content { margin-bottom: 2rem; }
+    .hero-3d-scene { display: none; }
+    .pricing-header-ui { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem;}
+    .sys-title-tag { flex-direction: row-reverse; }
+}

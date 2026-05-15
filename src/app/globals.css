@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Outfit:wght@800;900&display=swap');
+
+:root {
+  --base-dark: #06090F;
+  --base-deep: #0A0E18;
+  --card-surface: #0D1220;
+  --card-border: #1A2235;
+  --text-white: #F0F4FA;
+  --text-muted: #6B7A90;
+  --accent-primary: #00C8FF;
+  --accent-secondary: #7C3AED;
+  --accent-warm: #FF7B00;
+  --theme-border-ff: #FF7B00;
+  --theme-border-pubg: #00C8FF;
+  --theme-border-tiktok: #FF0066;
+  --theme-border-vr: #A200FF;
+  --font-ar: 'Cairo', sans-serif;
+  --font-en: 'Outfit', sans-serif;
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+body {
+  background-color: var(--base-dark);
+  color: var(--text-white);
+  font-family: var(--font-ar);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent-primary); color: #000; }
+a { text-decoration: none; color: inherit; }
+
+/* === LOADING SCREEN === */
+.loading-screen {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--base-dark); gap: 2rem;
+}
+.loading-brand {
+  font-family: var(--font-en); font-size: 3rem; font-weight: 900;
+  letter-spacing: 4px; color: var(--text-white);
+  animation: loadPulse 1.5s ease-in-out infinite;
+}
+.loading-dot {
+  display: inline-block; width: 10px; height: 10px;
+  background: var(--accent-primary); border-radius: 50%;
+  margin-left: 4px; vertical-align: super;
+  box-shadow: 0 0 12px var(--accent-primary);
+}
+.loading-bar {
+  width: 120px; height: 3px; border-radius: 4px;
+  background: rgba(255,255,255,0.06); overflow: hidden;
+}
+.loading-bar-inner {
+  width: 40%; height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  animation: loadSlide 1s ease-in-out infinite;
+}
+@keyframes loadPulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes loadSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* === AMBIENT BACKGROUND === */
+.cyber-ambient {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -20; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, #0C1020 0%, var(--base-dark) 100%);
+}
+.glow-sphere { position: absolute; border-radius: 50%; filter: blur(180px); opacity: 0.15; pointer-events: none; z-index: -20; }
+.glow-sphere.top-right { width: 800px; height: 800px; top: -300px; right: -200px; background: radial-gradient(circle, var(--accent-primary) 0%, transparent 60%); }
+.glow-sphere.bottom-left { width: 1000px; height: 1000px; bottom: -400px; left: -300px; background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%); opacity: 0.1; }
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--base-dark); }
+::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+/* === TILTCARD === */
+.tilt-card-outer { position: relative; width: 100%; height: 100%; cursor: pointer; }
+.tilt-card-glow {
+  position: absolute; inset: 0; border-radius: 20px;
+  opacity: 0; transition: opacity 0.7s; filter: blur(28px);
+  transform: translateZ(-30px) scale(1.05);
+}
+.tilt-card-outer:hover .tilt-card-glow { opacity: 0.15; }
+.tilt-card-glass {
+  position: relative; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 20px; overflow: hidden; transition: all 0.5s;
+  transform-style: preserve-3d; border: 1px solid rgba(255,255,255,0.04);
+}
+.tilt-card-glare { position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s; pointer-events: none; }
+.tilt-card-outer:hover .tilt-card-glare { opacity: 1; }
+.tilt-card-border {
+  position: absolute; inset: 0; border-radius: 20px;
+  border: 1px solid transparent; transition: border-color 0.7s; pointer-events: none;
+}
+.tilt-card-outer:hover .tilt-card-border { border-color: var(--tilt-color, transparent); }
+
+/* === HERO BUTTON === */
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 1rem;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #0098CC 100%);
+  color: #000; font-weight: 900; font-size: 1.3rem;
+  padding: 1.1rem 3rem; border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,200,255,0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+}
+.hero-btn:hover {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 20px 45px rgba(0,200,255,0.35);
+}
+
+/* === NAV === */
+.nav-btn {
+  border: 1px solid var(--card-border); color: var(--text-white);
+  padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 800;
+  font-size: 0.95rem; background: rgba(255,255,255,0.02); transition: 0.3s;
+}
+.nav-btn:hover { background: rgba(255,255,255,1); color: #000; border-color: #FFF; }
+
+.back-btn {
+  color: var(--text-muted); padding: 0.6rem 1.5rem;
+  border-radius: 100px; font-weight: 800; font-size: 1rem;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 0.8rem; cursor: pointer; transition: 0.3s;
+}
+.back-btn:hover { color: #FFF; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+
+/* === TRUST CARDS === */
+.trust-card {
+  background: linear-gradient(145deg, rgba(16,22,38,0.7) 0%, rgba(8,12,20,0.5) 100%);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 20px; padding: 2.5rem; text-align: center;
+  backdrop-filter: blur(16px); transition: all 0.4s ease;
+}
+.trust-card:hover {
+  border-color: rgba(255,255,255,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+/* === CTA BANNER === */
+.cta-banner {
+  position: relative; max-width: 1100px; margin: 0 auto;
+  padding: 5rem 3rem; border-radius: 24px;
+  background: linear-gradient(145deg, rgba(12,16,28,0.9) 0%, rgba(6,9,15,0.95) 100%);
+  border: 1px solid rgba(255,255,255,0.04); overflow: hidden;
+}
+
+/* === FROSTED CONTAINER === */
+.frosted-container {
+  position: relative;
+  background: linear-gradient(145deg, rgba(12,16,28,0.6) 0%, rgba(6,9,15,0.4) 100%);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px; padding: clamp(1.5rem, 3vw, 3rem);
+  backdrop-filter: blur(20px); overflow: hidden;
+}
+
+/* === PRICING CARDS GRID === */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.pricing-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 16px; padding: 1.5rem;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.8rem; transition: all 0.3s ease; cursor: default;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.3);
+}
+.pricing-card:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+  box-shadow: inset 0 1px 6px rgba(0,0,0,0.4), 0 12px 30px rgba(0,0,0,0.2);
+}
+.pricing-card .pack-amount {
+  font-size: 1.15rem; font-weight: 900; color: var(--text-white); text-align: center;
+}
+.pricing-card .pack-price {
+  font-family: var(--font-en); font-size: 1.6rem; font-weight: 900;
+  display: flex; align-items: baseline; gap: 0.3rem;
+}
+.pricing-card .pack-price .currency {
+  font-family: var(--font-ar); font-size: 0.8rem; color: var(--text-muted); font-weight: 800;
+}
+.pricing-card .pack-buy {
+  color: #000; padding: 0.55rem 1.4rem; border-radius: 10px; font-weight: 900;
+  font-size: 0.85rem; transition: all 0.3s ease; display: inline-block;
+  width: 100%; text-align: center;
+}
+.pricing-card .pack-buy:hover { transform: scale(1.05); filter: brightness(1.15); }
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .hero-btn { padding: 1rem 2rem; font-size: 1.1rem; }
+  .trust-card { padding: 1.8rem; }
+  .cta-banner { padding: 3rem 1.5rem; }
+  .pricing-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.8rem; }
+  .pricing-card { padding: 1.2rem; }
+  .hub-header-flex { flex-direction: column-reverse !important; align-items: center !important; gap: 1.5rem !important; }
+}

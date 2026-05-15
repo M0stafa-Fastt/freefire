@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART - Recharge Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Outfit:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="gaming-body">
+
+    <div class="cyber-ambient">
+        <div class="glow-sphere top-right"></div>
+        <div class="glow-sphere bottom-left"></div>
+    </div>
+
+    <!-- Clean Nav -->
+    <nav class="premium-nav border-nav">
+        <div class="logo">
+            SMART<span class="logo-dot"></span>
+        </div>
+        <a href="index.html" class="btn-nav-outline">العودة للرئيسية</a>
+    </nav>
+
+    <main class="system-hub">
+        
+        <!-- View 1: Categories -->
+        <div id="view-categories" class="view-panel active">
+            <div class="hub-header">
+                <h2>جاهز تشحن؟</h2>
+                <p>اختار اللعبة وابدأ التنفيذ فوراً.</p>
+            </div>
+            
+            <div class="cards-3d-grid">
+                
+                <!-- Free Fire -->
+                <div class="gaming-card theme-ff" data-game="ff">
+                    <div class="card-glow-bg"></div>
+                    <div class="card-glass-body">
+                        <div class="card-icon">F</div>
+                        <h3 class="card-title">فري فاير</h3>
+                    </div>
+                </div>
+
+                <!-- PUBG -->
+                <div class="gaming-card theme-pubg" data-game="pubg">
+                    <div class="card-glow-bg"></div>
+                    <div class="card-glass-body">
+                        <div class="card-icon">P</div>
+                        <h3 class="card-title">ببجي موبايل</h3>
+                    </div>
+                </div>
+
+                <!-- TikTok -->
+                <div class="gaming-card theme-tiktok" data-game="tiktok">
+                    <div class="card-glow-bg"></div>
+                    <div class="card-glass-body">
+                        <div class="card-icon">T</div>
+                        <h3 class="card-title">تيك توك</h3>
+                    </div>
+                </div>
+
+                <!-- Viking Rise -->
+                <div class="gaming-card theme-vr" data-game="vr">
+                    <div class="card-glow-bg"></div>
+                    <div class="card-glass-body">
+                        <div class="card-icon">V</div>
+                        <h3 class="card-title">فايكنج رايز</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- View 2: Pricing Database -->
+        <div id="view-pricing" class="view-panel hidden">
+            
+            <div class="pricing-header-ui">
+                <button id="btn-back" class="btn-nav-outline">
+                    <span>→</span> رجوع
+                </button>
+                <div class="sys-title-tag">
+                    <div id="sel-geo-icon" class="title-icon"></div>
+                    <h2 id="sel-game-title"></h2>
+                </div>
+            </div>
+            
+            <div id="pricing-render-target" class="pricing-layout">
+                <!-- Data blocks injected by script.js -->
+            </div>
+            
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
