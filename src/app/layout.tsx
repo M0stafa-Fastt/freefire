@@ -21,56 +21,49 @@ export default function RootLayout({
         </div>
         
         {/* Global Navigation */}
-        <nav style={{
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          padding: '1.5rem 6%', position: 'sticky', top: 0, zIndex: 100,
-          background: 'rgba(5, 7, 10, 0.8)', backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(255,255,255,0.05)'
-        }}>
-          <Link href="/" style={{
-            display: 'flex', alignItems: 'center', transition: '0.3s ease'
-          }} className="logo-container">
-            <img 
-              src="/logo/main-logo.png" 
-              alt="SMART logo" 
-              style={{ height: '50px', width: 'auto', filter: 'drop-shadow(0 0 12px rgba(0,200,255,0.3))' }} 
-            />
-          </Link>
-          <Link href="/" className="nav-btn">
-            الرئيسية
-          </Link>
+        <nav className="main-nav">
+          {/* Right Side: Logo */}
+          <div className="nav-side-right">
+            <Link href="/" className="logo-link">
+              <img src="/logo/main-logo.png" alt="SMART logo" className="nav-logo" />
+            </Link>
+          </div>
+          
+          {/* Middle: Channel & Support */}
+          <div className="nav-center-actions">
+            <a 
+              href="https://whatsapp.com/channel/0029VbAszMJHQbS8UXuJO43r" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="nav-action-btn channel-btn"
+            >
+              <img src="/logo/main-logo.png" alt="" className="btn-small-logo" />
+              <span className="btn-text">قناة الرسمية</span>
+            </a>
+
+            <a 
+              href="https://wa.me/201096247339?text=السلام عليكم، اريد التواصل مع الدعم الفني" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="nav-action-btn support-btn"
+            >
+              <span className="btn-icon">🛠️</span>
+              <span className="btn-text">الدعم الفني</span>
+            </a>
+          </div>
+
+          {/* Left Side: Home */}
+          <div className="nav-side-left">
+            <Link href="/" className="nav-action-btn home-btn">
+              <span className="btn-icon">🏠</span>
+              <span className="btn-text">الرئيسية</span>
+            </Link>
+          </div>
         </nav>
+
 
         {children}
 
-        {/* Floating Action Buttons */}
-        <div className="fab-stack">
-          {/* WhatsApp Channel FAB */}
-          <a 
-            href="https://whatsapp.com/channel/0029VbAszMJHQbS8UXuJO43r" 
-            target="_blank" 
-            rel="noreferrer"
-            className="wa-fab channel-fab"
-          >
-            <div className="fab-icon-container">
-              <img src="/logo/main-logo.png" alt="SMART" className="fab-logo" />
-            </div>
-            <div className="fab-tooltip">القناه</div>
-          </a>
-
-          {/* Technical Support FAB */}
-          <a 
-            href="https://wa.me/201096247339?text=السلام عليكم، اريد التواصل مع الدعم الفني" 
-            target="_blank" 
-            rel="noreferrer"
-            className="wa-fab support-fab"
-          >
-            <div className="fab-icon-container">
-              <span style={{ fontSize: '1.4rem' }}>🛠️</span>
-            </div>
-            <div className="fab-tooltip">للدعم الفني</div>
-          </a>
-        </div>
       </body>
     </html>
   );
